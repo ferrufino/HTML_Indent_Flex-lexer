@@ -16,6 +16,7 @@
                         printf("    ");
                     indents++; printf("<");
                 }
+
 \<              indents++; printf("<"); BEGIN 0;
 \<!             printf("<!"); BEGIN 0;
 \<meta          printf("<meta"); BEGIN 0;
@@ -41,6 +42,7 @@
                     for(i=0; i<indents; i++) printf("    ");   
                     printf("</");
                 }
+
 \<\/li		{
 			BEGIN 0;
 			--indents;
@@ -49,7 +51,9 @@
 			list='f';
 			printf("</li");
 		}
+
 \<strong\>|\<EM\>|\<\/strong\>|\<\/EM\>             printf("%s",yytext);
+
 .               BEGIN textBef; printf("%s",yytext);
 
 %%
